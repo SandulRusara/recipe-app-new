@@ -42,7 +42,7 @@ const App = () => {
             <AppBar position="static" color="primary">
                 <Toolbar>
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                        Dashboard
+                        {/*Dashboard*/}
                     </Typography>
                     <Box display="flex" alignItems="center">
                         <Typography variant="body1" sx={{ marginRight: 1 }}>Dark Mode</Typography>
