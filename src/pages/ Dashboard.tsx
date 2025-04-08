@@ -133,8 +133,6 @@
 //
 // export default Dashboard;
 
-
-
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Typography, Container, Box, Card, CardContent, Grid, IconButton } from '@mui/material';
 import { logout } from '../redux/authSlice';
@@ -142,10 +140,36 @@ import { RootState, AppDispatch } from '../redux/store';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useState, useEffect } from 'react';
 
 const Dashboard = () => {
     const user = useSelector((state: RootState) => state.auth.user);
     const dispatch = useDispatch<AppDispatch>();
+
+    const [currentTime, setCurrentTime] = useState<string>('');
+
+    // Function to format the date and time
+    const updateTime = () => {
+        const now = new Date();
+        const formattedTime = now.toLocaleString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true
+        });
+        setCurrentTime(formattedTime);
+    };
+
+    // Update time every second
+    useEffect(() => {
+        updateTime(); // Set initial time
+        const interval = setInterval(updateTime, 1000); // Update time every second
+        return () => clearInterval(interval); // Clean up interval on unmount
+    }, []);
 
     return (
         <Box
@@ -176,7 +200,6 @@ const Dashboard = () => {
                     onClick={() => dispatch(logout())}
                     sx={{
                         fontWeight: 600,
-                       // backgroundColor: '#f50057',
                         padding: '10px 20px',
                         '&:hover': {
                             backgroundColor: '#c51162',
@@ -185,6 +208,17 @@ const Dashboard = () => {
                 >
                     Logout
                 </IconButton>
+            </Box>
+
+            {/* Live Date and Time */}
+            <Box mb={5}>
+                <Typography
+                    variant="h4"
+                    fontWeight={600}
+                    sx={{ color: '#333', fontSize: '36px', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}
+                >
+                     Date and Time: {currentTime}
+                </Typography>
             </Box>
 
             {/* User Info Section */}
@@ -277,4 +311,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
