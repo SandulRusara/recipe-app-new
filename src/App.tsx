@@ -8,6 +8,11 @@ import Dashboard from './pages/ Dashboard';
 import LoginPage from "./pages/ LoginPage.tsx";
 
 
+
+
+
+
+
 const App = () => {
     const [darkMode, setDarkMode] = useState(false); // State for theme toggle
     const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
@@ -54,6 +59,7 @@ const App = () => {
                 <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+
             </Routes>
         </ThemeProvider>
     );
