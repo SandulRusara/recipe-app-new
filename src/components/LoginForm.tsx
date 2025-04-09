@@ -224,7 +224,6 @@ const LoginForm = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
-    // ✅ Set a default user if users array is empty
     React.useEffect(() => {
         const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
         if (existingUsers.length === 0) {
