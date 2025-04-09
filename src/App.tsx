@@ -6,38 +6,33 @@ import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
 import Dashboard from './pages/ Dashboard';
 import LoginPage from "./pages/ LoginPage.tsx";
-
-
-
-
+import ExploreRecipes from "./pages/ExploreRecipes.tsx";
 
 
 
 const App = () => {
-    const [darkMode, setDarkMode] = useState(false); // State for theme toggle
+    const [darkMode, setDarkMode] = useState(false);
     const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
-    // Create theme with light and dark modes
     const theme = createTheme({
         palette: {
             mode: darkMode ? 'dark' : 'light',
             primary: {
-                main: darkMode ? '#90caf9' : '#1976d2', // Light Blue for dark mode
+                main: darkMode ? '#90caf9' : '#1976d2',
             },
             secondary: {
-                main: darkMode ? '#f48fb1' : '#f50057', // Pink for dark mode
+                main: darkMode ? '#f48fb1' : '#f50057',
             },
         },
     });
 
-    // Toggle the theme
+
     const handleThemeToggle = () => {
         setDarkMode((prevMode) => !prevMode);
     };
 
-    // Ensure that the app waits for the authentication state before rendering
+
     if (isAuthenticated === undefined) {
-        // Optionally, show a loading spinner or any fallback UI here
         return <div>Loading...</div>;
     }
 
@@ -59,6 +54,8 @@ const App = () => {
                 <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/explore-recipes" element={<ExploreRecipes />} />
+
 
             </Routes>
         </ThemeProvider>
@@ -66,3 +63,6 @@ const App = () => {
 };
 
 export default App;
+
+
+
