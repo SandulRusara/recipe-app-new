@@ -495,7 +495,7 @@ const Dashboard = () => {
     useEffect(() => {
         updateTime();
         const interval = setInterval(updateTime, 1000);
-        return () => clearInterval(interval); // Clean up interval on unmount
+        return () => clearInterval(interval);
     }, []);
 
     const handleAddRecipe = async () => {
@@ -732,4 +732,6 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
 
