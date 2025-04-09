@@ -7,6 +7,7 @@ import { RootState } from './redux/store';
 import Dashboard from './pages/ Dashboard';
 import LoginPage from "./pages/ LoginPage.tsx";
 import ExploreRecipes from "./pages/ExploreRecipes.tsx";
+import RecipeDetails from "./components/RecipeDetails.tsx";
 
 
 
@@ -55,6 +56,7 @@ const App = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/explore-recipes" element={<ExploreRecipes />} />
+                <Route path="/recipe-details" element={<RecipeDetails />} /> {/* Recipe details page route */}
 
 
             </Routes>
