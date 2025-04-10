@@ -1,6 +1,7 @@
-
+import { useEffect, useState } from 'react';
 import { Box, Grid, Card, CardContent, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const dummyRecipes = [
     {
@@ -43,9 +44,27 @@ const dummyRecipes = [
 
 const ExploreRecipes = () => {
     const navigate = useNavigate();
+    const [recipes, setRecipes] = useState(dummyRecipes);
 
-    const handleViewRecipe = (recipe) => {
-        navigate('/recipe-details', { state: { recipe } }); // Pass recipe data to the details page
+    useEffect(() => {
+        axios.get('http://localhost:5000/api/recipes')
+            .then((res) => {
+                if (res.data && Array.isArray(res.data)) {
+                    setRecipes(res.data);
+                }
+            })
+            .catch((err) => {
+                console.error('API error:', err);
+                setRecipes(dummyRecipes); // fallback
+            });
+    }, []);
+
+    const handleViewRecipe = (recipe: any) => {
+        navigate('/recipe-details', { state: { recipe } });
+    };
+
+    const handleBackToDashboard = () => {
+        navigate('/');
     };
 
     return (
@@ -54,11 +73,19 @@ const ExploreRecipes = () => {
                 Explore Recipes
             </Typography>
 
+            <Button variant="outlined" color="secondary" sx={{ mb: 4 }} onClick={handleBackToDashboard}>
+                Back to Dashboard
+            </Button>
+
             <Grid container spacing={4}>
-                {dummyRecipes.map((recipe) => (
+                {recipes.map((recipe) => (
                     <Grid item xs={12} sm={6} md={4} key={recipe.id}>
                         <Card sx={{ boxShadow: 10, borderRadius: 3 }}>
-                            <img src={recipe.image} alt={recipe.title} style={{ width: '100%', borderRadius: '3px 3px 0 0' }} />
+                            <img
+                                src={recipe.image}
+                                alt={recipe.title}
+                                style={{ width: '100%', borderRadius: '3px 3px 0 0' }}
+                            />
                             <CardContent>
                                 <Typography variant="h6" fontWeight={600}>
                                     {recipe.title}
@@ -73,7 +100,7 @@ const ExploreRecipes = () => {
                                     variant="contained"
                                     color="primary"
                                     sx={{ mt: 2 }}
-                                    onClick={() => handleViewRecipe(recipe)} // Navigate to RecipeDetails with recipe data
+                                    onClick={() => handleViewRecipe(recipe)}
                                 >
                                     View Recipe
                                 </Button>

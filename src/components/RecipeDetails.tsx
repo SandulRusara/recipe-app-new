@@ -4,7 +4,7 @@ import { Box, Typography, Button, Card, CardContent } from '@mui/material';
 
 const RecipeDetails = () => {
     const location = useLocation();
-    const recipe = location.state?.recipe; // Retrieve the recipe data passed from the previous page
+    const recipe = location.state?.recipe;
 
     if (!recipe) {
         return <Typography variant="h6" color="error">Recipe not found.</Typography>;
@@ -12,7 +12,7 @@ const RecipeDetails = () => {
 
     return (
         <Box sx={{ p: 5 }}>
-            <Link to="/" style={{ textDecoration: 'none' }}>
+            <Link to="/explore-recipes" style={{ textDecoration: 'none' }}>
                 <Button variant="outlined" color="secondary">Back to Recipes</Button>
             </Link>
 
