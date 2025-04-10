@@ -8,6 +8,7 @@ import Dashboard from './pages/ Dashboard';
 import LoginPage from "./pages/ LoginPage.tsx";
 import ExploreRecipes from "./pages/ExploreRecipes.tsx";
 import RecipeDetails from "./components/RecipeDetails.tsx";
+import FavoritesPage from "./pages/FavoritesPage.tsx";
 
 
 
@@ -65,6 +66,9 @@ const App = () => {
 };
 
 export default App;
+
+
+
 
 
 

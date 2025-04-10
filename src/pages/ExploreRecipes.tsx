@@ -3,6 +3,7 @@ import { Box, Grid, Card, CardContent, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 const dummyRecipes = [
     {
         id: 1,
@@ -17,7 +18,7 @@ const dummyRecipes = [
         id: 2,
         title: 'Chicken Alfredo',
         cookingTime: '30 minutes',
-        image: 'src/assets/img_1.png',
+        image: 'src/assets/img_2.png',
         rating: 4.7,
         ingredients: 'Chicken breast, garlic, cream, butter, parmesan',
         instructions: 'Cook chicken, make alfredo sauce, combine with pasta.',
@@ -55,7 +56,7 @@ const ExploreRecipes = () => {
             })
             .catch((err) => {
                 console.error('API error:', err);
-                setRecipes(dummyRecipes); // fallback
+                setRecipes(dummyRecipes);
             });
     }, []);
 
@@ -114,3 +115,14 @@ const ExploreRecipes = () => {
 };
 
 export default ExploreRecipes;
+
+
+
+
+
+
+
+
+
+
+
