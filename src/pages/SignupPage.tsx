@@ -1,4 +1,4 @@
-// SignupPage.tsx
+
 
 import { Container, Typography } from '@mui/material';
 import SignupForm from '../components/SignupForm';
